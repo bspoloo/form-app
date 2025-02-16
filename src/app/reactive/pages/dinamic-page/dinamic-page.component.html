@@ -11,7 +11,9 @@
         placeholder="Nombre de la persona"
         formControlName="name"
       />
-      <span class="form-text text-danger"> error message </span>
+      <span class="form-text text-danger" *ngIf="this.isValidField('name')">
+        {{getFieldError('name')}}
+      </span>
     </div>
   </div>
 
@@ -20,9 +22,9 @@
     <label class="col-sm-3 col-form-label">Agregar</label>
     <div class="col-sm-9">
       <div class="input-group">
-        <input class="form-control" placeholder="Agregar favorito" />
+        <input class="form-control" placeholder="Agregar favorito" formControlName="favorite" />
 
-        <button class="btn btn-outline-primary" type="button">
+        <button class="btn btn-outline-primary" type="button" (click)="this.onSaveFavorite()">
           Agregar favorito
         </button>
       </div>
@@ -37,9 +39,11 @@
         <div class="input-group">
           <input class="form-control" [formControlName]="i"/>
 
-          <button class="btn btn-outline-danger" type="button">Eliminar</button>
+          <button class="btn btn-outline-danger" type="button" (click)="this.onDeleteFavorite(i)">Eliminar</button>
         </div>
-        <span class="form-text text-danger"> Este campo es requerido </span>
+        <span class="form-text text-danger" *ngIf="this.isValidFieldInArray( getFavoriteGames(), i)">
+          Este campo es requerido
+        </span>
       </div>
     </div>
   </div>
