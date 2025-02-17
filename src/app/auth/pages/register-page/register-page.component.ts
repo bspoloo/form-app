@@ -12,7 +12,7 @@ import { EmailValidatorService } from '../../../shared/validators/email-validato
 })
 export class RegisterPageComponent {
   public myForm: FormGroup;
-
+  // insert all validators
   constructor(private fb: FormBuilder, private validatorSerice : ValidatorsService, private emailValidatorService : EmailValidatorService) {
     this.myForm = this.fb.group({
       name: ['', [Validators.required, Validators.pattern(validatorSerice.firstNameAndLastnamePattern)]],
